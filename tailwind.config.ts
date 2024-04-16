@@ -10,4 +10,5 @@ const config: Config = {
   plugins: [],
 };
 
+// eslint-disable-next-line no-restricted-syntax
 export default config;
