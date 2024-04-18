@@ -1,13 +1,24 @@
+import React, { Suspense } from 'react';
+
 import { NextPage } from 'next';
 
-const Home: NextPage = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+import { GithubProfile } from '@/components/github-profile';
+import { LongWaitComponent } from '@/components/long-wait-component';
 
-  const response = await fetch('https://api.github.com/users/dgvalerio');
-
-  const user = await response.json();
-
-  return <pre>{JSON.stringify(user, null, 2)}</pre>;
-};
+const Home: NextPage = () => (
+  <div>
+    <h1>Home!</h1>
+    <Suspense
+      fallback={<p className="bg-gray-100">Carregando LongWaitComponent</p>}
+    >
+      <LongWaitComponent />
+    </Suspense>
+    <Suspense
+      fallback={<p className="bg-green-100">Carregando GithubProfile</p>}
+    >
+      <GithubProfile />
+    </Suspense>
+  </div>
+);
 
 export default Home;
